@@ -1,0 +1,60 @@
+# Silent fails on datatype enforcements, cannot run test defined in seed file
+
+version: 2
+
+seeds:
+  - name: ref_domain_names
+    description: "Seed value for reference element"
+    docs:
+      show: true
+    config: 
+      enabled: true
+      schema: seed_data
+      column_types:
+        +domain_key: int
+        +domain_code: varchar(32)
+        +domain_name: varchar(255)
+
+    columns: 
+      - name: domain_key
+        description: This column is for domain keys 
+        quote: false
+        tests:
+          - not_null
+          - unique
+
+      - name: domain_code
+        quote: false
+      
+      - name: domain_name
+        quote: false
+
+
+  - name: xwalk_domain_names
+    description: "Seed value for xwalk data"
+    docs:
+      show: true
+    config: 
+      enabled: true
+      schema: seed_data
+      column_types:
+        +source_domain_code: varchar(20)
+        +source_table_name: varchar(255)
+        +ref_domain_key: int
+
+    columns:
+      - name: source_domain_code
+        quote: false
+      - name: source_table_name
+      - name: ref_domain_key
+
+#    columns: 
+#      - name: country
+#        description: This column is for country code 
+#        quote: false
+#        tests:
+#          - relationships:
+#              to: ref('ref_country_codes')
+#              field: country_name
+#          - not_null
+#          - unique

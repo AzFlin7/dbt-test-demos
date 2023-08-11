@@ -1,0 +1,15 @@
+version: 2
+
+sources:
+  - name: dbt_staging_dataset
+    #database: dbt_staging_dataset
+    loader: gcloud storage
+  
+    tables:
+      - name: superstore_dbt_staging_table_parquet
+        description: "External table of Snowplow events, stored as CSV files in Cloud Storage"
+        external:
+          location: 'gs://local-talent-data-bucket/dbt_parquet/*.parquet'
+          options:
+            format: parquet
+        

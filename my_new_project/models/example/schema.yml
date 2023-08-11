@@ -1,0 +1,30 @@
+
+version: 2
+
+models:
+    - name: github_bq_org_model
+      description: "A starter dbt model"
+      columns:
+          - name: event_type
+            description: "Event type"
+            tests:
+                - not_null
+                - unique
+          
+          - name: created_year
+            description: "Created Year"
+            tests:
+                - not_null
+
+    - name: github_bq_user_model
+      description: "A starter dbt model"
+      columns:
+          - name: event_type
+            description: "Event type"
+            tests:
+                - not_null
+          
+          - name: created_year
+            description: "Created Year"
+            tests:
+                - not_null

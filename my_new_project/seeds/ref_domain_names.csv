@@ -1,0 +1,16 @@
+domain_key,domain_code,domain_name
+10001,com,commercial
+10002,org,organization
+10003,hu,Hungary
+10004,jp,Japan
+10005,pl,Poland
+10006,net,network
+10007,cz,CzechRepublic
+10008,nl,Netherlands
+10009,me,Montenegro
+10010,fr,France
+10011,nz,NewZealand
+10012,at,Austria
+10013,ca,Canada
+10014,de,Germany
+10015,eu,EuropeanUnion

@@ -1,0 +1,16 @@
+source_domain_code,source_table_name,ref_domain_key
+com,github_timelines,10001
+org,github_timelines,10002
+hu,github_timelines,10003
+jp,github_timelines,10004
+pl,github_timelines,10005
+net,github_timelines,10006
+cz,github_timelines,10007
+nl,github_timelines,10008
+me,github_timelines,10009
+fr,github_timelines,10010
+nz,github_timelines,10011
+at,github_timelines,10012
+ca,github_timelines,10013
+de,github_timelines,10014
+eu,github_timelines,10015

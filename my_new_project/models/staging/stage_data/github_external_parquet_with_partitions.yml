@@ -1,0 +1,26 @@
+version: 2
+
+sources:
+  - name: dbt_staging_dataset
+    #database: dbt_staging_dataset
+    loader: gcloud storage
+  
+    tables:
+      - name: github_external_parquet_with_partitions
+        description: "Loading external data with multiple partition cols"
+        external:
+          location: 'gs://local-talent-data-bucket/db_partition_parquet_test/*'
+          options:
+            format: parquet
+
+            # if you want a partitioned table, file paths MUST be Hive-style: 
+            #   'gs://bucket/path/collector_hour=2020-01-01/'
+            #   'gs://bucket/path/collector_hour=2020-01-02/' (etc)
+            
+            hive_partition_uri_prefix: 'gs://local-talent-data-bucket/db_partition_parquet_test/'
+          partitions:               
+            - name: partition_col
+              data_type: date
+            - name: type
+              data_type: string
+        

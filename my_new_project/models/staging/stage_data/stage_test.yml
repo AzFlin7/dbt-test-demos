@@ -1,0 +1,33 @@
+
+version: 2
+
+models:
+    - name: github_timelines_stage
+      description: "Test cases for staging model - github_timelines_stage"
+      columns:
+          - name: created_date
+            description: "Repository created date"
+            tests:
+                - not_null
+                - year_greater_than_2000  # Custom created test case using macro
+          
+          - name: actor_attributes_type
+            description: "Created Year"
+            tests:
+                - not_null
+                - accepted_values:
+                    values: ['User','Organization']
+                    config: 
+                      where: created_date < CURRENT_DATE()
+                      store_failures: false   #Test result tables are created in a schema suffixed or named dbt_test__audit
+                      limit: 1000 # Limit the number of failures that will be returned by a test query
+                      severity: error # If set to warn, dbt will skip the error_if condition 
+                      error_if: ">1000"
+                      warn_if: ">10"
+
+# ==== Test an expression ====
+# models:
+# - name: orders
+#    tests:
+#      - unique:
+#          column_name: "(country_code || '-' || order_id)"

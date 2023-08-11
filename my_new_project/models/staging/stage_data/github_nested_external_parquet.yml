@@ -1,0 +1,15 @@
+version: 2
+
+sources:
+  - name: dbt_staging_dataset
+    #database: dbt_staging_dataset
+    loader: gcloud storage
+  
+    tables:
+      - name: github_nested_dbt_stage
+        description: "External table staged from gcp storage"
+        external:
+          location: 'gs://local-talent-data-bucket/bq_export/*.parquet'
+          options:
+            format: parquet
+        

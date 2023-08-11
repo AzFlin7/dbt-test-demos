@@ -1,0 +1,27 @@
+version: 2
+
+sources:
+  - name: dbt_staging_dataset
+    #database: dbt_staging_dataset
+    loader: gcloud storage
+  
+    tables:
+      - name: aisle_dbt_staging_table
+        description: "External table of Snowplow events, stored as CSV files in Cloud Storage"
+        external:
+          location: 'gs://local-talent-data-bucket/aisles.csv'
+          options:
+            format: csv
+            skip_leading_rows: 1
+        
+        # It is mandatory to provide all columns in the csv file
+        # else dbt will throw error
+        # Too many values in row starting at position: 15. Found 2 column(s) while expected 1. 
+        columns:
+          - name: aisle_id
+            data_type: int
+            description: "Aisle ID"
+          
+          - name: aisle
+            data_type: string
+            description: "Aisle Name"
